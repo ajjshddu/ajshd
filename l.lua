@@ -700,7 +700,7 @@ end)
 
 armaIcon = addIcon("Trocar Arma", {item = 11927, text = "Trocar Arma", hotkey = ""}, trocarArmaMacro)
 armaIcon:breakAnchors()
-armaIcon:move(290, 240)
+armaIcon:move(240, 300)
 
 
 
@@ -872,7 +872,7 @@ end)
 
 desviar1 = addIcon("Desviar", {item = 12435, text = "Desviar", hotkey = ""}, desviarMacro)
 desviar1:breakAnchors()
-desviar1:move(290, 300)
+desviar1:move(300, 300)
 
 onCreaturePositionChange(function(creature, newPos, oldPos)
   if creature:isLocalPlayer() and oldPos then
@@ -935,9 +935,6 @@ atackMacro = macro(1, function()
   end
 end)
 
-atack1 = addIcon("Orthes", {item = 3270, text = "Orthes", hotkey = ""}, atackMacro)
-atack1:breakAnchors()
-atack1:move(90, 300)
 
 
 
