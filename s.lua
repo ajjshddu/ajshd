@@ -6,7 +6,7 @@ local susanooRingID = 14944
       
 -- CONFIGURAÇÃO DE COOLDOWNS      
 local danzoCD = 5 * 60 * 1000      
-local izanagiCD = 7 * 60 * 1000      
+local izanagiCD = 6 * 60 * 1000      
       
 -- MENSAGENS      
 local perdaDanzo = "%[80%%%] da sua vida%."      
