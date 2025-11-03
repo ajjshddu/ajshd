@@ -485,69 +485,68 @@ end)
 
 
 
---burlarNpc
+
+-- burlarNpc corrigido
 
 local function sayWord1(str)
     local _, strStart = str:find("palavra ")
     local strEnd = str:find(" para")
-    if (not strStart or not strEnd) then return end
+    if not strStart or not strEnd then return nil end
     return str:sub(strStart + 1, strEnd - 1):trim()
 end
 
 local function sayWord2(str)
     local _, strStart = str:find("palavra ")
     local strEnd = str:find(" para")
-    if (not strStart or not strEnd) then return end
+    if not strStart or not strEnd then return nil end
     return str:sub(strStart + 1, strEnd - 1):trim()
 end
 
 local function sayWord3(str)
     local _, strStart = str:find("> ")
     local strEnd = str:find(" <")
-    if (not strStart or not strEnd) then return end
+    if not strStart or not strEnd then return nil end
     return str:sub(strStart + 1, strEnd - 1):trim()
 end
 
 local function sayWord4(str)
     local _, strStart = str:find("digite: ")
     local strEnd = str:find(" para")
-    if (not strStart or not strEnd) then return end
+    if not strStart or not strEnd then return nil end
     return str:sub(strStart + 1, strEnd - 1):trim()
 end
 
 local function sayWord5(str)
     local _, strStart = str:find("palavra ")
     local strEnd = str:find(" para")
-    if (not strStart or not strEnd) then return end
+    if not strStart or not strEnd then return nil end
     return str:sub(strStart + 1, strEnd - 1):trim()
 end
 
 onTalk(function(name, level, mode, text, channelId, pos)
-    if (name == 'Kirigakure') then
-        local _wordSay = sayWord1(text):gsub("^%s*{", ""):gsub("}%s*$", "")
-        NPC.say(_wordSay)
-        schedule(400, function() NPC.say('yes') end)
-    elseif (name == 'Myoboku') then
-        local _wordSay = sayWord2(text):gsub("^%s*{", ""):gsub("}%s*$", "")
-        NPC.say(_wordSay)
-        schedule(400, function() NPC.say('yes') end)
-    elseif (name == 'Benisu') then
-        local _wordSay = sayWord3(text):gsub("^%s*{", ""):gsub("}%s*$", "")
-        NPC.say(_wordSay)
-        schedule(400, function() NPC.say('yes') end)
-    elseif (name == 'Port Island') then
-        local _wordSay = sayWord4(text):gsub("^%s*{", ""):gsub("}%s*$", "")
-        NPC.say(_wordSay)
-        schedule(400, function() NPC.say('yes') end)
-    elseif (name == 'Dark Island') then
-        local _wordSay = sayWord5(text):gsub("^%s*{", ""):gsub("}%s*$", "")
-        NPC.say(_wordSay)
-        schedule(400, function() NPC.say('yes') end)
+    local wordFunc
+
+    if name == 'Kirigakure' then
+        wordFunc = sayWord1
+    elseif name == 'Myoboku' then
+        wordFunc = sayWord2
+    elseif name == 'Benisu' then
+        wordFunc = sayWord3
+    elseif name == 'Port Island' then
+        wordFunc = sayWord4
+    elseif name == 'Dark Island' then
+        wordFunc = sayWord5
+    end
+
+    if wordFunc then
+        local word = wordFunc(text)
+        if word then
+            word = word:gsub("^%s*{", ""):gsub("}%s*$", "")
+            NPC.say(word)
+            schedule(400, function() NPC.say('yes') end)
+        end
     end
 end)
-
-
-
 
 
 
